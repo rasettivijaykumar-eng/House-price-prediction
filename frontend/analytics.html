@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Model Analytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <header class="navbar glass">
+      <div class="container nav-inner">
+        <div class="brand">
+          <span class="brand-mark">H</span>
+          <span>HomePrice AI</span>
+        </div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/predict">Predict</a>
+          <a href="/analytics">Analytics</a>
+          <a href="/about">About</a>
+        </nav>
+        <a class="btn btn-primary" href="/predict">Predict House Price</a>
+      </div>
+    </header>
+
+    <main class="page-shell">
+      <section class="container page-section">
+        <div class="section-heading centered reveal">
+          <span class="eyebrow">Analytics Dashboard</span>
+          <h2>Machine learning model insights</h2>
+        </div>
+
+        <div class="dashboard-cards reveal">
+          <div class="mini-panel glass"><span>Dataset Size</span><strong id="dataset-size">-</strong></div>
+          <div class="mini-panel glass"><span>Training Records</span><strong id="training-records">-</strong></div>
+          <div class="mini-panel glass"><span>Testing Records</span><strong id="testing-records">-</strong></div>
+          <div class="mini-panel glass"><span>Locations</span><strong id="locations-count">-</strong></div>
+          <div class="mini-panel glass"><span>Features</span><strong id="feature-count">-</strong></div>
+          <div class="mini-panel glass"><span>Best Model</span><strong id="best-model">-</strong></div>
+          <div class="mini-panel glass"><span>R² Score</span><strong id="r2-score">-</strong></div>
+          <div class="mini-panel glass"><span>MAE</span><strong id="mae-score">-</strong></div>
+          <div class="mini-panel glass"><span>RMSE</span><strong id="rmse-score">-</strong></div>
+        </div>
+
+        <div class="chart-grid">
+          <div class="chart-card glass reveal">
+            <h3>Model Comparison</h3>
+            <canvas id="modelComparisonChart"></canvas>
+          </div>
+          <div class="chart-card glass reveal">
+            <h3>Actual vs Predicted Price</h3>
+            <canvas id="actualVsPredictedChart"></canvas>
+          </div>
+          <div class="chart-card glass reveal">
+            <h3>Feature Importance</h3>
+            <canvas id="featureImportanceChart"></canvas>
+          </div>
+          <div class="chart-card glass reveal">
+            <h3>House Price Distribution</h3>
+            <canvas id="priceDistributionChart"></canvas>
+          </div>
+          <div class="chart-card glass reveal wide">
+            <h3>Price vs Square Footage</h3>
+            <canvas id="priceVsSqftChart"></canvas>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>HomePrice AI</strong>
+          <p>Model insights generated from the live training dataset and selected model.</p>
+        </div>
+        <div class="footer-links">
+          <a href="/predict">Predict</a>
+          <a href="/analytics">Analytics</a>
+          <a href="/about">About</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/analytics.js"></script>
+  </body>
+</html>

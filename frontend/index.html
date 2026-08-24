@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HomePrice AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header class="navbar glass">
+      <div class="container nav-inner">
+        <div class="brand">
+          <span class="brand-mark">H</span>
+          <span>HomePrice AI</span>
+        </div>
+        <nav>
+          <a href="/">Home</a>
+          <a href="/predict">Predict</a>
+          <a href="/analytics">Analytics</a>
+          <a href="/about">About</a>
+        </nav>
+        <a class="btn btn-primary" href="/predict">Predict House Price</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="eyebrow">AI Property Valuation</span>
+            <h1>Predict Your House Price with AI</h1>
+            <p>Get an intelligent property price estimate using supervised machine learning.</p>
+            <div class="actions">
+              <a class="btn btn-primary" href="/predict">Predict House Price</a>
+              <a class="btn btn-secondary" href="/analytics">Explore Model</a>
+            </div>
+            <div class="hero-metrics">
+              <div>
+                <strong id="stat-records">0</strong>
+                <span>training records</span>
+              </div>
+              <div>
+                <strong id="stat-locations">0</strong>
+                <span>locations</span>
+              </div>
+              <div>
+                <strong id="stat-features">0</strong>
+                <span>features</span>
+              </div>
+              <div>
+                <strong id="stat-r2">0</strong>
+                <span>best R²</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero-visual reveal">
+            <div class="visual-card glass">
+              <div class="card-grid">
+                <div class="mini-stat">
+                  <span>Market Signal</span>
+                  <strong>+18.4%</strong>
+                </div>
+                <div class="mini-stat">
+                  <span>Model</span>
+                  <strong id="model-label">Loading</strong>
+                </div>
+              </div>
+              <div class="house-scene">
+                <div class="house"></div>
+                <div class="sun"></div>
+                <div class="chart-bars">
+                  <span style="height: 28%"></span>
+                  <span style="height: 42%"></span>
+                  <span style="height: 55%"></span>
+                  <span style="height: 76%"></span>
+                  <span style="height: 100%"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section intro">
+        <div class="container">
+          <div class="section-heading reveal">
+            <span class="eyebrow">Why HomePrice AI</span>
+            <h2>Smart valuation built for modern property decisions</h2>
+          </div>
+          <div class="feature-grid">
+            <div class="feature-card glass reveal">
+              <div class="icon">📍</div>
+              <h3>Location-aware</h3>
+              <p>Uses actual dataset locations and one-hot encoding to capture regional price differences.</p>
+            </div>
+            <div class="feature-card glass reveal">
+              <div class="icon">📐</div>
+              <h3>Feature rich</h3>
+              <p>Combines bedrooms, bathrooms, square footage, and other property variables for accurate estimates.</p>
+            </div>
+            <div class="feature-card glass reveal">
+              <div class="icon">📈</div>
+              <h3>Model-driven</h3>
+              <p>Evaluates multiple regression models and automatically selects the strongest performer.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section stats-showcase">
+        <div class="container">
+          <div class="stats-row">
+            <div class="stat-box glass reveal">
+              <span>Training Records</span>
+              <strong id="training-records">0</strong>
+            </div>
+            <div class="stat-box glass reveal">
+              <span>Locations</span>
+              <strong id="location-count">0</strong>
+            </div>
+            <div class="stat-box glass reveal">
+              <span>Features</span>
+              <strong id="feature-count">0</strong>
+            </div>
+            <div class="stat-box glass reveal">
+              <span>Best Model R²</span>
+              <strong id="best-r2-value">0</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div>
+          <strong>HomePrice AI</strong>
+          <p>Predicted values are estimates generated by a machine learning model and should not be considered professional property valuation.</p>
+        </div>
+        <div class="footer-links">
+          <a href="/predict">Predict</a>
+          <a href="/analytics">Analytics</a>
+          <a href="/about">About</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
