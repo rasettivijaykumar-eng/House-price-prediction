@@ -5,6 +5,7 @@ import joblib
 import numpy as np
 import pandas as pd
 from flask import Flask, jsonify, request, send_from_directory
+from flask_cors import CORS
 
 from preprocess import DATASET_PATH, METADATA_PATH, clean_dataset, get_train_test_data
 
@@ -14,6 +15,8 @@ FRONTEND_DIR = PROJECT_ROOT / "frontend"
 MODEL_PATH = PROJECT_ROOT / "model" / "house_price_model.pkl"
 
 app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
+# Enable CORS for API routes. Replace with your Vercel domain when ready.
+CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5000", "https://house-price-prediction-blush-omega.vercel.app"]}})
 
 
 def format_indian_price(value):
