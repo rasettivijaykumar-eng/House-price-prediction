@@ -16,7 +16,7 @@ function formatIndianPrice(value) {
 async function loadLocations() {
   try {
     // Try fetching from backend API first (if available)
-    let response = await fetch('/api/locations');
+    let response = await fetch(window.apiUrl('/api/locations'));
     if (!response.ok) {
       // Fallback to static file served with the frontend
       response = await fetch('/data/locations.json');
@@ -36,7 +36,7 @@ async function loadLocations() {
 
 async function populateModelInfo() {
   try {
-    const response = await fetch('/api/model-info');
+    const response = await fetch(window.apiUrl('/api/model-info'));
     if (!response.ok) {
       return;
     }
@@ -86,7 +86,7 @@ form.addEventListener('submit', async (event) => {
   formMessage.classList.add('hidden');
 
   try {
-    const response = await fetch('/api/predict', {
+    const response = await fetch(window.apiUrl('/api/predict'), {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),

@@ -1,6 +1,6 @@
 async function loadModelInfo() {
   try {
-    const response = await fetch('/api/model-info');
+    const response = await fetch(window.apiUrl('/api/model-info'));
     if (!response.ok) {
       throw new Error('Model info unavailable');
     }

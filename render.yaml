@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: homeprice-ai-api
+    runtime: python
+    buildCommand: pip install -r backend/requirements.txt && python -m backend.train_model
+    startCommand: gunicorn backend.app:app --bind 0.0.0.0:$PORT
+    envVars:
+      - key: FRONTEND_ORIGIN
+        sync: false

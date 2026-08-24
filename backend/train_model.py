@@ -10,14 +10,24 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 from sklearn.pipeline import Pipeline
 from sklearn.tree import DecisionTreeRegressor
 
-from preprocess import (
-    MODEL_DIR,
-    MODEL_PATH,
-    METADATA_PATH,
-    build_preprocessor,
-    get_train_test_data,
-    save_metadata,
-)
+try:
+    from .preprocess import (
+        MODEL_DIR,
+        MODEL_PATH,
+        METADATA_PATH,
+        build_preprocessor,
+        get_train_test_data,
+        save_metadata,
+    )
+except ImportError:  # Supports running `python backend/train_model.py` locally.
+    from preprocess import (
+        MODEL_DIR,
+        MODEL_PATH,
+        METADATA_PATH,
+        build_preprocessor,
+        get_train_test_data,
+        save_metadata,
+    )
 
 
 MODEL_CONFIG = {

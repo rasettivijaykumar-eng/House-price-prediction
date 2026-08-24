@@ -7,7 +7,10 @@ import pandas as pd
 from flask import Flask, jsonify, request, send_from_directory
 from flask_cors import CORS
 
-from preprocess import DATASET_PATH, METADATA_PATH, clean_dataset, get_train_test_data
+try:
+    from .preprocess import DATASET_PATH, METADATA_PATH, clean_dataset, get_train_test_data
+except ImportError:  # Supports running `python backend/app.py` locally.
+    from preprocess import DATASET_PATH, METADATA_PATH, clean_dataset, get_train_test_data
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -15,8 +18,9 @@ FRONTEND_DIR = PROJECT_ROOT / "frontend"
 MODEL_PATH = PROJECT_ROOT / "model" / "house_price_model.pkl"
 
 app = Flask(__name__, static_folder=str(FRONTEND_DIR), static_url_path="")
-# Enable CORS for API routes. Replace with your Vercel domain when ready.
-CORS(app, resources={r"/api/*": {"origins": ["http://localhost:5000", "https://house-price-prediction-blush-omega.vercel.app"]}})
+allowed_origins = [origin.strip() for origin in __import__("os").environ.get("FRONTEND_ORIGIN", "").split(",") if origin.strip()]
+allowed_origins.extend(["http://localhost:5000", "http://127.0.0.1:5000"])
+CORS(app, resources={r"/api/*": {"origins": allowed_origins}})
 
 
 def format_indian_price(value):
@@ -35,6 +39,11 @@ def load_model():
 @app.route("/")
 def index():
     return send_from_directory(FRONTEND_DIR, "index.html")
+
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok"})
 
 
 @app.route("/predict")

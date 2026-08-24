@@ -1,6 +1,6 @@
 async function loadAnalytics() {
   try {
-    const response = await fetch('/api/analytics');
+    const response = await fetch(window.apiUrl('/api/analytics'));
     if (!response.ok) {
       throw new Error('Analytics unavailable');
     }

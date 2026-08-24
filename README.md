@@ -122,7 +122,39 @@ Then open:
 5. View the predicted property price and model details.
 6. Explore the analytics dashboard and about page.
 
-## 14. Project Structure
+## 14. Deploy Backend to Render and Frontend to Vercel
+
+The project is arranged as two services:
+
+- Render runs the Flask API and trains the model during its build.
+- Vercel serves the static files in `frontend/`.
+
+### Deploy the backend to Render
+
+1. Push this repository to GitHub, including `dataset/house_prices.csv`.
+2. In Render, choose **New > Blueprint** and select the repository. Render will read `render.yaml`.
+3. After the service is created, copy its public URL, for example `https://homeprice-ai-api.onrender.com`.
+4. Open the Render service environment variables and set `FRONTEND_ORIGIN` to the final Vercel URL, for example `https://homeprice-ai.vercel.app`. Multiple origins can be separated by commas.
+5. Check `https://YOUR-RENDER-URL.onrender.com/health`. It should return `{"status":"ok"}`.
+
+The Render build command installs `backend/requirements.txt` and runs `python -m backend.train_model`, so the ignored model file is generated on the server.
+
+### Deploy the frontend to Vercel
+
+1. Before deploying, edit `frontend/js/config.js` and set `HOMEPRICE_API_URL` to the Render URL:
+
+```js
+window.HOMEPRICE_API_URL = 'https://YOUR-RENDER-URL.onrender.com';
+```
+
+2. In Vercel, choose **Add New > Project**, import the same repository, and leave the project root as the repository root. The existing `vercel.json` routes the static site from `frontend/`.
+3. Deploy the project and copy its Vercel URL.
+4. Add that Vercel URL to Render's `FRONTEND_ORIGIN` variable and redeploy the backend.
+5. Test `/`, `/predict`, `/analytics`, a prediction submission, and the analytics charts on the Vercel URL.
+
+For local development, leave `HOMEPRICE_API_URL` empty and start Flask with `python backend/app.py`; the frontend will use the local API origin.
+
+## 15. Project Structure
 ```text
 homeprice-ai/
 ├── dataset/
@@ -152,15 +184,15 @@ homeprice-ai/
 └── .gitignore
 ```
 
-## 15. Results
+## 16. Results
 The model is trained from the provided dataset and the best-performing regression model is selected automatically based on the highest R² score. The app displays the actual ML-generated prediction values from that model.
 
-## 16. Limitations
+## 17. Limitations
 - Model predictions are estimates and not official valuations.
 - Performance depends on dataset quality and feature completeness.
 - A small or biased dataset may lead to limited generalization.
 
-## 17. Future Scope
+## 18. Future Scope
 - Add user authentication and saved history.
 - Support uploading custom CSV files for retraining.
 - Add more advanced models and hyperparameter tuning.
