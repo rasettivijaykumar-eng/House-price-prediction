@@ -15,7 +15,13 @@ function formatIndianPrice(value) {
 
 async function loadLocations() {
   try {
-    const response = await fetch('/api/locations');
+    // Try fetching from backend API first (if available)
+    let response = await fetch('/api/locations');
+    if (!response.ok) {
+      // Fallback to static file served with the frontend
+      response = await fetch('/data/locations.json');
+    }
+
     if (!response.ok) {
       throw new Error('Locations unavailable');
     }
