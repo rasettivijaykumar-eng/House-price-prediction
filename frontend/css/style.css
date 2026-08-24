@@ -418,6 +418,16 @@ nav a:hover,
   font-size: 1rem;
 }
 
+/* Make native select dropdown options readable on all platforms */
+.field select option {
+  color: #061827; /* dark text for readability */
+  background: #ffffff; /* white background for options */
+}
+
+.field select option:checked {
+  background: rgba(77, 182, 255, 0.12);
+}
+
 .field input:focus,
 .field select:focus {
   outline: 2px solid rgba(77, 182, 255, 0.4);
