@@ -5,6 +5,10 @@
   ],
   "routes": [
     { "handle": "filesystem" },
+    { "src": "^/$", "dest": "/frontend/index.html" },
+    { "src": "^/predict/?$", "dest": "/frontend/predict.html" },
+    { "src": "^/analytics/?$", "dest": "/frontend/analytics.html" },
+    { "src": "^/about/?$", "dest": "/frontend/about.html" },
     { "src": "^/(.*\\.(?:js|css|png|jpg|jpeg|svg|ico))$", "dest": "/frontend/$1" },
     { "src": "^/(.*)$", "dest": "/frontend/index.html" }
   ]
